@@ -37,8 +37,8 @@ def predict_price(dates, prices, x):
     plt.legend()
     plt.show()
 
-    return svr_rbt.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
+    return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
 
-get_data('aapl.csv')
+get_data('safshares.csv')
 predicted_prices = predicted_price(dates, prices, 29)
 print(predicted_prices)
