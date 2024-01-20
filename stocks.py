@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import csv
-import numpy
+import numpy as np
 from sklearn.svm import SVR
 import matplotlib.pyplot as plt
 
@@ -10,9 +10,9 @@ prices = []
 def get_data(file):
     with open(file, 'r') as csvfile:
         csvFileReader = csv.reader(csvfile)
-        new(csvFileReader)
+        next(csvFileReader)
         for row in csvFileReader:
-            dates.append(int(row[0].split('-')[0]))
+            dates.append(int(row[0].split('/')[0]))
             prices.append(float(row[1]))
     return
 
@@ -37,8 +37,8 @@ def predict_price(dates, prices, x):
     plt.legend()
     plt.show()
 
-    return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
+    return svr_rbf.predict([[x]])[0], svr_lin.predict([[x]])[0], svr_poly.predict([[x]])[0]
 
 get_data('safshares.csv')
-predicted_prices = predicted_price(dates, prices, 29)
+predicted_prices = predict_price(dates, prices, 29)
 print(predicted_prices)
